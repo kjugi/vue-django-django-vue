@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from .api.views import index_view, PostViewSet
+from .api.views import index_view, PostViewSet, WriterViewSet
 
 router = routers.DefaultRouter()
 router.register('post', PostViewSet)
+router.register('author', WriterViewSet)
 
 urlpatterns = [
     # http://localhost:8000/

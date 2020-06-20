@@ -1,21 +1,18 @@
-
-from django.contrib.auth.models import User
+from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
-from rest_framework import serializers
+
+class Writer(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    bio = models.TextField()
+    socialLinks = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list])
+    # image = models.ImageField() - pip install Pillow or FilePathField
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    featureImage = models.CharField(max_length=200)
-    writer = models.CharField(max_length=200)
-    bio = models.TextField()
-
-class PostSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Post
-        fields = ['title', 'content', 'writer']
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email']
+    featureImage = models.CharField(max_length=200) # FilePathField
+    writer = models.ForeignKey(Writer, on_delete=models.CASCADE)
+    categories = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list])
+    areCommentsEnabled = models.BooleanField(default=True)
+    # urlSlug = models. - example of custom url slug
