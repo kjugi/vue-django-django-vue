@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'oauth2_provider',
     'rest_framework',
     'jsonfield',
     'corsheaders',
@@ -86,7 +87,10 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
 }
 
 # CORS middleware
@@ -102,7 +106,6 @@ CSRF_TRUSTED_ORIGINS = [
     'localhost'
 ]
 
-# TODO: Add auth service
 # TODO: Move to https
 
 # Database
