@@ -156,26 +156,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-# When Vue Builds, path will be `/static/css/...` so we will have Django Serve
-# In Production, it's recommended use an alternative approach such as:
-# http://whitenoise.evans.io/en/stable/django.html?highlight=django
-
-# MIDDLEWARE_CLASSES = (
-#     'whitenoise.middleware.WhiteNoiseMiddleware',
-# )
-
 STATIC_URL = '/static/'
-# Place static in the same location as webpack build files
-STATIC_ROOT = os.path.join(BASE_DIR, 'dist', 'static')
-STATICFILES_DIRS = []
-
-
-##########
-# STATIC #
-##########
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Insert Whitenoise Middleware at top but below Security Middleware
-# MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware',)
-# http://whitenoise.evans.io/en/stable/django.html#make-sure-staticfiles-is-configured-correctly
