@@ -29,7 +29,7 @@ router.register('author', WriterViewSet)
 oauth2_endpoint_views = [
     path('authorize/', oauth2_views.AuthorizationView.as_view(), name="authorize"),
     path('token/', oauth2_views.TokenView.as_view(), name="token"),
-    path('revoke-token/', oauth2_views.RevokeTokenView.as_view(), name="revoke-token"),
+    path('revoke-token/', oauth2_views.RevokeTokenView.as_view(), name="revoke-token")
 ]
 
 if settings.DEBUG:
@@ -39,20 +39,19 @@ if settings.DEBUG:
         path('applications/register/', oauth2_views.ApplicationRegistration.as_view(), name="register"),
         path('applications/<pk>/', oauth2_views.ApplicationDetail.as_view(), name="detail"),
         path('applications/<pk>/delete/', oauth2_views.ApplicationDelete.as_view(), name="delete"),
-        path('applications/<pk>/update/', oauth2_views.ApplicationUpdate.as_view(), name="update"),
+        path('applications/<pk>/update/', oauth2_views.ApplicationUpdate.as_view(), name="update")
     ]
 
     # OAuth2 Token Management endpoints
     oauth2_endpoint_views += [
         path('authorized-tokens/', oauth2_views.AuthorizedTokensListView.as_view(), name="authorized-token-list"),
         path('authorized-tokens/<pk>/delete/', oauth2_views.AuthorizedTokenDeleteView.as_view(),
-            name="authorized-token-delete"),
+            name="authorized-token-delete")
     ]
-
 
 urlpatterns = [
     # http://localhost:8000/
-    path('', index_view, name='index'),
+    # path('', index_view, name='index'),
 
     # http://localhost:8000/api/<router-viewsets>
     path('api/', include(router.urls)),
@@ -63,3 +62,8 @@ urlpatterns = [
     # http://localhost:8000/o/<oauth-pages>
     path('o/', include((oauth2_endpoint_views, 'o'), namespace='oauth2_provider'))
 ]
+
+handler403 = 'rest_framework.exceptions.server_error'
+handler404 = 'rest_framework.exceptions.server_error'
+handler500 = 'rest_framework.exceptions.server_error'
+handler400 = 'rest_framework.exceptions.bad_request'
