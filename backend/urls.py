@@ -56,7 +56,7 @@ urlpatterns = [
     # http://localhost:8000/api/<router-viewsets>
     path('api/', include(router.urls)),
 
-    # http://localhost:8000/api/admin/
+    # http://localhost:8000/admin/
     path('admin/', admin.site.urls),
 
     # http://localhost:8000/o/<oauth-pages>
