@@ -34,6 +34,7 @@ oauth2_endpoint_views = [
 
 if settings.DEBUG:
     # OAuth2 Application Management endpoints
+    # TODO: Fix redirect to login page when not logged
     oauth2_endpoint_views += [
         path('applications/', oauth2_views.ApplicationList.as_view(), name="list"),
         path('applications/register/', oauth2_views.ApplicationRegistration.as_view(), name="register"),
