@@ -1,12 +1,16 @@
-from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
+from django.http import JsonResponse
 from rest_framework import viewsets
 
 from .models import Post, Writer
 from .serializers import WriterSerializer, PostSerializer
 
-# Serve Vue Application
-index_view = never_cache(TemplateView.as_view(template_name='index.html'))
+def indexWelcome(request):
+    data = {
+        'message': 'Hello from API!',
+        'version': 0.1
+    }
+    return JsonResponse(data)
 
 class PostViewSet(viewsets.ModelViewSet):
   """

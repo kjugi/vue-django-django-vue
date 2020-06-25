@@ -20,7 +20,7 @@ from django.urls import path, include
 from rest_framework import routers
 import oauth2_provider.views as oauth2_views
 
-from .api.views import index_view, PostViewSet, WriterViewSet
+from .api.views import indexWelcome, PostViewSet, WriterViewSet
 
 router = routers.DefaultRouter()
 router.register('post', PostViewSet)
@@ -53,7 +53,7 @@ if settings.DEBUG:
 
 urlpatterns = [
     # /
-    # path('', index_view, name='index'),
+    path('', indexWelcome, name='index'),
 
     # /api/<router-viewsets>
     path('api/', include(router.urls)),
