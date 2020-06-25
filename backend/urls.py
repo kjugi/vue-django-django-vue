@@ -52,16 +52,16 @@ if settings.DEBUG:
     ]
 
 urlpatterns = [
-    # http://localhost:8000/
+    # /
     # path('', index_view, name='index'),
 
-    # http://localhost:8000/api/<router-viewsets>
+    # /api/<router-viewsets>
     path('api/', include(router.urls)),
 
-    # http://localhost:8000/admin/
+    # /admin/
     path(os.getenv('ADMIN_URL'), admin.site.urls),
 
-    # http://localhost:8000/o/<oauth-pages>
+    # /o/<oauth-pages>
     path('o/', include((oauth2_endpoint_views, 'o'), namespace='oauth2_provider'))
 ]
 

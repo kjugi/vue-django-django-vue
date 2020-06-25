@@ -114,8 +114,6 @@ CSRF_TRUSTED_ORIGINS = [
     'localhost'
 ]
 
-# TODO: Move to https
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
