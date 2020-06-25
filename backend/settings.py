@@ -101,6 +101,10 @@ REST_FRAMEWORK = {
     )
 }
 
+OAUTH2_PROVIDER = {
+    'OAUTH2_VALIDATOR_CLASS': 'backend.validator.AxesOAuth2Validator'
+}
+
 # CORS middleware
 
 CORS_ORIGIN_WHITELIST = [
