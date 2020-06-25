@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
@@ -58,7 +59,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
 
     # http://localhost:8000/admin/
-    path('admin/', admin.site.urls),
+    path(os.getenv('ADMIN_URL'), admin.site.urls),
 
     # http://localhost:8000/o/<oauth-pages>
     path('o/', include((oauth2_endpoint_views, 'o'), namespace='oauth2_provider'))
