@@ -6,11 +6,11 @@ from .models import Post, Writer
 from .serializers import WriterSerializer, PostSerializer
 
 def indexWelcome(request):
-    data = {
-        'message': 'Hello from API!',
-        'version': 0.1
-    }
-    return JsonResponse(data)
+  data = {
+      'message': 'Hello from API!',
+      'version': 0.1
+  }
+  return JsonResponse(data)
 
 class PostViewSet(viewsets.ModelViewSet):
   """
