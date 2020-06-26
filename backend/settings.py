@@ -97,11 +97,13 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # REST_FRAMEWORK is compatible with oauth2 and axes wall ootb
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     )
 }
 
 OAUTH2_PROVIDER = {
+    # Must use overriting here for /o/token by custom validator
     'OAUTH2_VALIDATOR_CLASS': 'backend.validator.AxesOAuth2Validator'
 }
 
