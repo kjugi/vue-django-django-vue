@@ -1,32 +1,66 @@
 <template>
-  <div>
+  <div class="blog">
     Blog page
 
-    <div
-      v-for="(item, index) in posts"
-      :key="index"
-    >
-      {{ item }}
+    <div class="blog__wrapper">
+      <post-item
+        v-for="(item, index) in posts"
+        :key="index"
+        :data="item"
+      />
+    </div>
+
+    <div class="blog__pagination">
+      <button
+        v-if="pagination.prev"
+        type="button"
+        @click="getPage(pageNumber-1)"
+      >
+        Previous page
+      </button>
+
+      <button
+        v-if="pagination.next"
+        type="button"
+        @click="getPage(pageNumber+1)"
+      >
+        Next page
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions, mapState } from 'vuex'
+
+import PostItem from '@/components/PostItem.vue'
 
 export default {
+  components: {
+    PostItem
+  },
   async mounted() {
-    try {
-      const { data } = await axios('http://127.0.0.1:8000/api/post/?format=json')
-
-      this.posts = data
-    } catch (error) {
-      console.error(error)
-    }
+    await this.fetchPosts(this.pageNumber)
   },
   data () {
     return {
-      posts: []
+      // TODO: Get page number from url and put it into url
+      pageNumber: 1
+    }
+  },
+  computed: {
+    ...mapState([
+      'posts',
+      'pagination'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'fetchPosts'
+    ]),
+    async getPage (newPageNumber) {
+      this.pageNumber = newPageNumber
+      await this.fetchPosts(this.pageNumber)
     }
   }
 }
