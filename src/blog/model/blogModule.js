@@ -1,20 +1,12 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import axios from 'axios'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+const blogModule = {
   state: {
     posts: {},
     postCount: 0,
     pagination: {
       prev: null,
       next: null
-    },
-    globalError: {
-      status: false,
-      message: null
     }
   },
   mutations: {
@@ -54,6 +46,7 @@ export default new Vuex.Store({
     },
     // TODO: split into modules
     // TODO: fetch writters
-  },
-  getters: {}
-})
+  }
+}
+
+export default blogModule

@@ -33,7 +33,7 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 
-import PostItem from '@/components/PostItem.vue'
+import PostItem from './PostItem.vue'
 
 export default {
   components: {
@@ -49,13 +49,13 @@ export default {
     }
   },
   computed: {
-    ...mapState([
+    ...mapState('blogModule', [
       'posts',
       'pagination'
     ])
   },
   methods: {
-    ...mapActions([
+    ...mapActions('blogModule', [
       'fetchPosts'
     ]),
     async getPage (newPageNumber) {
