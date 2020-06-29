@@ -16,7 +16,7 @@ class PostViewSet(viewsets.ModelViewSet):
   """
     API - Posts are visible and editable
   """
-  queryset = Post.objects.all()
+  queryset = Post.objects.all().order_by('id')
   model = Post
   serializer_classes = {
     'list': PostSerializer,
