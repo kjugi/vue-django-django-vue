@@ -65,3 +65,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.blog__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0px auto;
+}
+</style>
