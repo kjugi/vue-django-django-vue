@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const blogModule = {
+export const blogModule = {
   namespaced: true,
   state: {
     posts: {},
@@ -49,5 +49,3 @@ const blogModule = {
     // TODO: fetch writters
   }
 }
-
-export default blogModule
