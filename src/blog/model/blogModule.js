@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const blogModule = {
+  namespaced: true,
   state: {
     posts: {},
     postCount: 0,
