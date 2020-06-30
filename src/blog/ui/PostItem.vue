@@ -1,9 +1,8 @@
 <template>
-  <div class="post-item">
-    <router-link
-      :to="`/blog/${data.id}`"
-      class="post-item__link"
-    >
+  <router-link
+    :to="`/blog/${data.id}`"
+    class="post-item"
+  >
       <img
         :src="data.featureImage || '../images/placeholder-image.png'"
         class="post-item__image"
@@ -29,8 +28,7 @@
           {{ data.text }}
         </div>
       </div>
-    </router-link>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -50,20 +48,21 @@ export default {
   border: 1px solid #393E41;
   padding: 12px;
   margin: 0 12px 12px 0;
+  color: #2c3e50;
   text-align: left;
+  text-decoration: none;
+}
+
+.post-item:hover,
+.post-item:focus {
+  cursor: pointer;
 }
 
 .post-item:nth-child(2n) {
   margin-right: 0;
 }
 
-.post-item__link {
-  color: #2c3e50;
-  text-decoration: none;
-}
-
-.post-item__link:hover,
-.post-item__link:focus {
-  cursor: pointer;
+.post-item__image {
+  max-width: 100%;
 }
 </style>
