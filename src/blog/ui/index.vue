@@ -58,13 +58,13 @@ export default {
     }
   },
   computed: {
-    ...mapState('blogModule', [
+    ...mapState('blog', [
       'posts',
       'pagination'
     ])
   },
   methods: {
-    ...mapActions('blogModule', [
+    ...mapActions('blog', [
       'fetchPosts'
     ]),
     async handleFetching () {

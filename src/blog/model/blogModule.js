@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const blogModule = {
+export const blog = {
   namespaced: true,
   state: {
     posts: {},
