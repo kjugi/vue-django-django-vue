@@ -24,6 +24,9 @@
       </div>
     </div>
   </div>
+  <p v-else>
+    Problem with fetching data from api
+  </p>
 </template>
 
 <script>
@@ -43,7 +46,7 @@ export default {
 
       this.data = data
     } catch (error) {
-      console.error(error)
+      this.data = false
     }
   }
 }
