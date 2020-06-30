@@ -3,31 +3,33 @@
     :to="`/blog/${data.id}`"
     class="post-item"
   >
-      <img
-        :src="data.featureImage || '../images/placeholder-image.png'"
-        class="post-item__image"
-      />
+    <img
+      v-if="imageHasError"
+      :src="data.featureImage"
+      class="post-item__image"
+      @error="imageHasError = true"
+    />
 
-      <h3 class="post-item__title">
-        {{ data.title }}
-      </h3>
+    <h3 class="post-item__title">
+      {{ data.title }}
+    </h3>
 
-      <p class="post-item__content">
-        {{ data.content.substr(0, 20) }}...
-      </p>
+    <p class="post-item__content">
+      {{ data.content.substr(0, 20) }}...
+    </p>
 
+    <div
+      v-if="data.categories"
+      class="post-item__categories"
+    >
       <div
-        v-if="data.categories"
-        class="post-item__categories"
+        v-for="(item, index) in data.categories"
+        :key="index"
+        class="post-item__category"
       >
-        <div
-          v-for="(item, index) in data.categories"
-          :key="index"
-          class="post-item__category"
-        >
-          {{ data.text }}
-        </div>
+        {{ data.text }}
       </div>
+    </div>
   </router-link>
 </template>
 
@@ -37,6 +39,11 @@ export default {
     data: {
       type: Object,
       required: true
+    }
+  },
+  data () {
+    return {
+      imageHasError: false
     }
   }
 }
