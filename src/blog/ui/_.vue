@@ -44,6 +44,7 @@ export default {
         `http://127.0.0.1:8000/api/post/${this.$route.params.id}/?format=json`
       )
 
+      // TODO: Check store for writer or fetch from API by url
       this.data = data
     } catch (error) {
       this.data = false

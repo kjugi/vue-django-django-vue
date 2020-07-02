@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// TODO: Move to index.vue logic
 export const blog = {
   namespaced: true,
   state: {
