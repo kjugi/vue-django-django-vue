@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 import PostItem from './PostItem.vue'
 
@@ -61,15 +61,29 @@ export default {
     ...mapState('blog', [
       'posts',
       'pagination'
+    ]),
+    ...mapGetters('writer', [
+      'isWritterAvailable'
     ])
   },
   methods: {
     ...mapActions('blog', [
       'fetchPosts'
     ]),
+    ...mapActions('writer', [
+      'fetchSingleWriter'
+    ]),
     async handleFetching () {
       try {
+        // Get post for page
         await this.fetchPosts(this.pageNumber)
+
+        // Fetch post authors
+        this.posts.map(async (post) => {
+          if (!this.isWritterAvailable(post.writer)) {
+            await this.fetchSingleWriter(post.writer)
+          }
+        })
       } catch (error) {
         this.isFetchingError = {
           status: true,

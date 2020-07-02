@@ -12,12 +12,17 @@ export const writer = {
   },
   actions: {
     async fetchSingleWriter ({ commit }, url) {
-      const { data } = await axios(url)
+      const { data } = await axios(`http://127.0.0.1:8000/api/author/${url}`)
 
       commit('addWriter', {
         id: data.id,
         content: data
       })
+    }
+  },
+  getters: {
+    isWritterAvailable: (state) => (id) => {
+      return !!state.writers[id]
     }
   }
 }
