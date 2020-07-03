@@ -61,17 +61,11 @@ export default {
     ...mapState('blog', [
       'posts',
       'pagination'
-    ]),
-    ...mapGetters('writer', [
-      'isWritterAvailable'
     ])
   },
   methods: {
     ...mapActions('blog', [
       'fetchPosts'
-    ]),
-    ...mapActions('writer', [
-      'fetchSingleWriter'
     ]),
     async handleFetching () {
       try {
