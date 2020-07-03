@@ -21,7 +21,7 @@ export const writer = {
     }
   },
   getters: {
-    isWritterAvailable: (state) => (id) => {
+    isWriterAvailable: (state) => (id) => {
       return !!state.writers[id]
     }
   }
