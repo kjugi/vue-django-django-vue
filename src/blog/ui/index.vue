@@ -2,6 +2,8 @@
   <div class="blog">
     Blog page
 
+    <loader v-if="isFetching" />
+
     <template v-if="!isFetchingError.status">
       <div class="blog__wrapper">
         <post-item
@@ -39,10 +41,12 @@
 import { mapActions, mapState } from 'vuex'
 
 import PostItem from './PostItem.vue'
+import Loader from '@/app/ui/Loader.vue'
 
 export default {
   components: {
-    PostItem
+    PostItem,
+    Loader
   },
   async mounted() {
     await this.handleFetching()
