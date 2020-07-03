@@ -23,6 +23,19 @@
         {{ data.text }}
       </div>
     </div>
+
+    <div class="post__author">
+      <h4 class="post__author-name">
+        Author: {{ data.writer.name }}
+      </h4>
+
+      <p
+        v-if="data.writer.bio"
+        class="post__author-bio"
+      >
+        {{ data.writer.bio }}
+      </p>
+    </div>
   </div>
   <p v-else>
     Problem with fetching data from api
