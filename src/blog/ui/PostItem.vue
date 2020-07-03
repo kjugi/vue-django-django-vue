@@ -31,18 +31,13 @@
       </div>
     </div>
 
-    <div
-      v-if="writers[data.writer]"
-      class="post-item__author"
-    >
-      Author: {{ writers[data.writer].name }}
+    <div class="post-item__author">
+      Author: {{ data.writer.name }}
     </div>
   </router-link>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   props: {
     data: {
@@ -54,11 +49,6 @@ export default {
     return {
       imageHasError: false
     }
-  },
-  computed: {
-    ...mapState('writer', [
-      'writers'
-    ])
   }
 }
 </script>

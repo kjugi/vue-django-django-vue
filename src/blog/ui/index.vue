@@ -77,13 +77,6 @@ export default {
       try {
         // Get post for page
         await this.fetchPosts(this.pageNumber)
-
-        // Fetch post authors
-        this.posts.map(async (post) => {
-          if (!this.isWritterAvailable(post.writer)) {
-            await this.fetchSingleWriter(post.writer)
-          }
-        })
       } catch (error) {
         this.isFetchingError = {
           status: true,
