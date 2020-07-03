@@ -6,8 +6,13 @@ class WriterSerializer(serializers.ModelSerializer):
         model = Writer
         fields = '__all__'
 
+class ShortWriterSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Writer
+    fields = ['id', 'name', 'email']
+
 class PostSerializer(serializers.ModelSerializer):
-    writer = WriterSerializer()
+    writer = ShortWriterSerializer()
     class Meta:
         model = Post
         fields = ['id', 'title', 'content', 'categories', 'featureImage', 'writer']
