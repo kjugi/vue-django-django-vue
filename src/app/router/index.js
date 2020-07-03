@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/homepage/ui/Home.vue'
-import Post from '@/blog/ui/_.vue'
+import Post from '@/post/ui/_.vue'
 import Blog from '@/blog/ui/index.vue'
 
 Vue.use(VueRouter)
@@ -26,10 +26,11 @@ Vue.use(VueRouter)
   },
   {
     path: '/blog/:id',
-    component: Post,
-    children: [
-      { path: '', component: Blog }
-    ]
+    component: Blog
+  },
+  {
+    path: '/post/:id',
+    component: Post
   }
 ]
 

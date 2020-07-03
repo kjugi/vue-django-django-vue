@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="`/blog/${data.id}`"
+    :to="`/post/${data.id}`"
     class="post-item"
   >
     <img
