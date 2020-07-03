@@ -24,7 +24,7 @@ export const blog = {
     }
   },
   actions: {
-    async fetchPosts ({ commit, dispatch }, pageNumber) {
+    async fetchPosts ({ commit }, pageNumber) {
       const { data } = await axios(`http://127.0.0.1:8000/api/post/?format=json&page=${pageNumber}`)
 
       commit('addPosts', data.results)
@@ -32,12 +32,6 @@ export const blog = {
       commit('updatePagination', {
         prev: data.previous,
         next: data.next
-      })
-
-      // Get only unique writers
-      data.results.map(async el => {
-        // TODO: Searching for existing writer by getter to not request multiple times
-        await dispatch('writer/fetchSingleWriter', el.writer, { root: true })
       })
     }
   }
