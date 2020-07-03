@@ -14,21 +14,19 @@
       </div>
 
       <div class="blog__pagination">
-        <button
+        <router-link
           v-if="pagination.prev"
-          type="button"
-          @click="getPage(pageNumber-1)"
+          :to="`/blog/${pageNumber-1}`"
         >
           Previous page
-        </button>
+        </router-link>
 
-        <button
+        <router-link
           v-if="pagination.next"
-          type="button"
-          @click="getPage(pageNumber+1)"
+          :to="`/blog/${pageNumber+1}`"
         >
           Next page
-        </button>
+        </router-link>
       </div>
     </template>
     <p v-else>
@@ -53,8 +51,7 @@ export default {
   },
   data () {
     return {
-      // TODO: Get page number from url and put it into url
-      pageNumber: 1,
+      isFetching: false,
       isFetchingError: {
         status: false,
         message: null
@@ -65,7 +62,23 @@ export default {
     ...mapState('blog', [
       'posts',
       'pagination'
-    ])
+    ]),
+    pageNumber () {
+      return Number(this.$route.params?.id || 1)
+    }
+  },
+  watch: {
+    $route(to, from) {
+      // Don't need to reload page when entering same page blog number
+      if (
+        to.params.id === '1' && !from.params.id ||
+        !to.params.id && from.params.id === '1'
+      ) {
+        return
+      }
+
+      this.handleFetching()
+    }
   },
   methods: {
     ...mapActions('blog', [
@@ -73,18 +86,18 @@ export default {
     ]),
     async handleFetching () {
       try {
+        this.isFetching = true
+
         // Get post for page
-        await this.fetchPosts(this.pageNumber)
+        await this.fetchPosts(this.$route.params.id || 1)
       } catch (error) {
         this.isFetchingError = {
           status: true,
           message: error.message
         }
+      } finally {
+        this.isFetching = false
       }
-    },
-    async getPage (newPageNumber) {
-      this.pageNumber = newPageNumber
-      await this.handleFetching()
     }
   }
 }
