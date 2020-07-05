@@ -1,12 +1,41 @@
 <template>
-  <div class="loader">
-    <div class="loader__wrapper">
-      <p class="loader__text">
+  <div class="
+    fixed
+    top-0
+    left-0
+    w-full
+    h-full
+    flex
+    justify-center
+    items-center
+    bg-white
+    bg-opacity-75
+    z-10
+  ">
+    <div class="flex justify-center flex-wrap w-full">
+      <p class="w-full text-base text-center">
         Loading...
       </p>
 
-      <div class="loader__bar">
-        <span class="loader__progress"></span>
+      <div class="
+        relative
+        w-48
+        max-w-3/4
+        h-4
+        rounded-full
+        bg-white border-2
+        border-gray-700
+        overflow-hidden
+      ">
+        <span class="
+          progress
+          block
+          w-48
+          h-3
+          rounded-full
+          bg-green-600
+          -translate-x-full
+        "></span>
       </div>
     </div>
   </div>
@@ -18,51 +47,8 @@ export default {
 </script>
 
 <style>
-.loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.7);
-  z-index: 10;
-}
-
-.loader__wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.loader__text {
-  width: 100%;
-  font-size: 18px;
-  text-align: center;
-}
-
-.loader__bar {
-  position: relative;
-  width: 200px;
-  max-width: 80%;
-  height: 12px;
-  border-radius: 12px;
-  background-color: #fff;
-  border: 1px solid #2c3e50;
-  overflow: hidden;
-}
-
-.loader__progress {
-  display: block;
-  width: 200px;
-  height: 12px;
-  border-radius: 12px;
-  background-color: #42b983;
+.progress {
   animation: scroll 2s infinite;
-  transform: translateX(-100%);
 }
 
 @keyframes scroll {

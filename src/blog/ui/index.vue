@@ -1,11 +1,13 @@
 <template>
-  <div class="blog">
-    Blog page
+  <div>
+    <h1 class="text-center text-3xl mb-4">
+      Blog page
+    </h1>
 
     <loader v-if="isFetching" />
 
     <template v-if="!isFetchingError.status">
-      <div class="blog__wrapper">
+      <div class="flex flex-wrap mx-auto">
         <post-item
           v-for="(item, index) in posts"
           :key="index"
@@ -13,7 +15,7 @@
         />
       </div>
 
-      <div class="blog__pagination">
+      <div class="flex justify-center">
         <router-link
           v-if="pagination.prev"
           :to="`/blog/${pageNumber-1}`"
@@ -102,12 +104,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.blog__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin: 0px auto;
-}
-</style>

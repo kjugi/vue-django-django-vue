@@ -1,12 +1,12 @@
 <template>
   <router-link
     :to="`/post/${data.id}`"
-    class="post-item"
+    class="item p-4 m-4 border-2 border-gray-500 text-left text-gray-700 no-underline"
   >
     <img
       v-if="imageHasError"
       :src="data.featureImage"
-      class="post-item__image"
+      class="max-w-full"
       @error="imageHasError = true"
     />
 
@@ -54,26 +54,7 @@ export default {
 </script>
 
 <style>
-.post-item {
-  width: calc(50% - 32px);
-  border: 1px solid #393E41;
-  padding: 12px;
-  margin: 0 12px 12px 0;
-  color: #2c3e50;
-  text-align: left;
-  text-decoration: none;
-}
-
-.post-item:hover,
-.post-item:focus {
-  cursor: pointer;
-}
-
-.post-item:nth-child(2n) {
-  margin-right: 0;
-}
-
-.post-item__image {
-  max-width: 100%;
+.item {
+  width: calc(50% - 2rem);
 }
 </style>

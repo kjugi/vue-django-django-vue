@@ -24,9 +24,9 @@
       </div>
     </div>
 
-    <div class="post__author">
+    <div class="author relative border-gray-700 border-2 p-4 mt-4">
       <h4 class="post__author-name">
-        Author: {{ data.writer.name }}
+        Name: {{ data.writer.name }}
       </h4>
 
       <p
@@ -64,3 +64,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.author:before {
+  content: 'Author bio';
+  @apply absolute;
+  left: 16px;
+  top: -10px;
+  @apply text-base;
+  @apply bg-white;
+  @apply px-2;
+}
+</style>
