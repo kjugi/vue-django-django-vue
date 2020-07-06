@@ -3,7 +3,7 @@
     v-if="data"
     class='post'
   >
-    <h3 class="post__title">
+    <h3 class="text-2xl my-2">
       {{ data.title }}
     </h3>
 
@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .author:before {
   content: 'Author bio';
   @apply absolute;
