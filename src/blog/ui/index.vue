@@ -15,10 +15,11 @@
         />
       </div>
 
-      <div class="flex justify-center">
+      <div class="flex justify-center my-8">
         <router-link
           v-if="pagination.prev"
           :to="`/blog/${pageNumber-1}`"
+          class="link relative uppercase border-2 p-2"
         >
           Previous page
         </router-link>
@@ -26,6 +27,7 @@
         <router-link
           v-if="pagination.next"
           :to="`/blog/${pageNumber+1}`"
+          class="link relative uppercase border-2 p-2"
         >
           Next page
         </router-link>
@@ -104,3 +106,33 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.link {
+  @apply border-black;
+  @apply text-white;
+  @apply transition-all;
+  @apply duration-500;
+
+  &:after {
+    content: '';
+    @apply absolute;
+    top: -10px;
+    left: -10px;
+    width: 110%;
+    @apply h-full;
+    background: rgb(0,108,255);
+    transition: height 0.4s ease-in, top 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    @apply text-black;
+
+    &:after {
+      top: 25px;
+      @apply h-0;
+    }
+  }
+}
+</style>
