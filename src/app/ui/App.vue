@@ -17,9 +17,3 @@ export default {
 </script>
 
 <style src="../assets/tailwind.css"></style>
-
-<style lang="scss">
-a.router-link-exact-active {
-  @apply text-green-400;
-}
-</style>

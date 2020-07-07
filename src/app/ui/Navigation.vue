@@ -24,6 +24,10 @@
 </template>
 
 <style lang="scss" scoped>
+a.router-link-exact-active {
+  @apply text-green-400;
+}
+
 .link {
   @apply relative;
   @apply px-2;
