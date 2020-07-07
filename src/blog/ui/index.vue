@@ -33,12 +33,9 @@
         </router-link>
       </div>
     </template>
-    <p
-      v-else
-      class="error"
-    >
+    <error-component v-else>
       Problem with fetching data from api: {{ isFetchingError.message }}
-    </p>
+    </error-component>
   </div>
 </template>
 
@@ -47,11 +44,13 @@ import { mapActions, mapState } from 'vuex'
 
 import PostItem from './PostItem.vue'
 import Loader from '@/app/ui/Loader.vue'
+import ErrorComponent from '@/app/connector/Error.vue'
 
 export default {
   components: {
     PostItem,
-    Loader
+    Loader,
+    ErrorComponent
   },
   async mounted() {
     await this.handleFetching()

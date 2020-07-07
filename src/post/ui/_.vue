@@ -38,19 +38,21 @@
       </p>
     </div>
   </div>
-  <p
-    v-else
-    class="error"
-  >
+  <error-component v-else>
     Problem with fetching data from api
-  </p>
+  </error-component>
 </template>
 
 <script>
 import axios from 'axios'
 
+import ErrorComponent from '@/app/connector/Error.vue'
+
 export default {
-  data() {
+  components: {
+    ErrorComponent
+  },
+  data () {
     return {
       data: null
     }
