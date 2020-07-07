@@ -60,7 +60,7 @@ export default {
   async mounted() {
     try {
       const { data } = await axios(
-        `http://127.0.0.1:8000/api/post/${this.$route.params.id}/?format=json`
+        `http://127.0.0.1:8000/api/post/${this.$route.params.slug}/?format=json`
       )
 
       this.data = data
