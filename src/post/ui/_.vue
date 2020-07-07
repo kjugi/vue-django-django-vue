@@ -38,7 +38,10 @@
       </p>
     </div>
   </div>
-  <p v-else>
+  <p
+    v-else
+    class="error"
+  >
     Problem with fetching data from api
   </p>
 </template>

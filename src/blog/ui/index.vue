@@ -33,7 +33,10 @@
         </router-link>
       </div>
     </template>
-    <p v-else>
+    <p
+      v-else
+      class="error"
+    >
       Problem with fetching data from api: {{ isFetchingError.message }}
     </p>
   </div>
