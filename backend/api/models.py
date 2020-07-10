@@ -16,4 +16,4 @@ class Post(models.Model):
     writer = models.ForeignKey(Writer, on_delete=models.CASCADE)
     categories = JSONField(null=True)
     areCommentsEnabled = models.BooleanField(default=True)
-    # urlSlug = models. - example of custom url slug
+    urlSlug = models.CharField(max_length=255, null=True)
