@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <h3 class="title relative text-2xl p-4 mb-8 border-2 border-black text-black">
+    <h3 class="title relative text-2xl p-4 mb-16 border-2 border-black text-black">
       {{ data.title }}
     </h3>
 
@@ -10,7 +10,7 @@
 
     <div
       v-if="data.categories"
-      class="mt-8"
+      class="mt-16"
     >
       <div
         v-for="(item, index) in data.categories"
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="author relative border-gray-700 border-2 p-4 mt-8">
+    <div class="author relative border-gray-700 border-2 p-4 mt-16">
       <h4 class="mb-4">
         <span class="border-b-2 border-black font-bold">
           Name:
