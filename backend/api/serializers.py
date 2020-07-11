@@ -15,7 +15,7 @@ class PostSerializer(serializers.ModelSerializer):
     writer = ShortWriterSerializer()
     class Meta:
         model = Post
-        fields = ['id', 'title', 'slug', 'content', 'categories', 'featureImage', 'writer']
+        fields = ['id', 'title', 'urlSlug', 'content', 'categories', 'featureImage', 'writer']
 
 class SinglePostSerializer(serializers.HyperlinkedModelSerializer):
     writer = WriterSerializer()

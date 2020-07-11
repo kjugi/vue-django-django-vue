@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'post', params: { slug: data.id }}"
+    :to="{ name: 'post', params: { slug: data.urlSlug || data.id }}"
     class="
       item
       relative
