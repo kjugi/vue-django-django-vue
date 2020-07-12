@@ -27,6 +27,12 @@ class PostViewSet(viewsets.ModelViewSet):
   def get_serializer_class(self):
     return self.serializer_classes.get(self.action, self.default_serializer_class)
 
+  def get_queryset(self):
+    queryset = Post.objects.all().order_by('id')
+    singlePost = self.request.query_params.get('urlSlug', None)
+    if singlePost is not None:
+      queryset = queryset.filter(urlSlug=singlePost)
+    return queryset
 
 class WriterViewSet(viewsets.ModelViewSet):
   queryset = Writer.objects.all()
