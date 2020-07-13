@@ -20,7 +20,8 @@ class Post(models.Model):
     urlSlug = models.CharField(max_length=255, blank=True, default='')
 
     def save(self, *args, **kwargs):
-      withoutSpaces = re.sub(r"[^\w\s]", '', self.title)
-      # TODO: Add some random string or checking for unique
-      self.urlSlug = re.sub(r"\s+", '-', withoutSpaces).lower()
+      if not self.urlSlug:
+        withoutSpaces = re.sub(r"[^\w\s]", '', self.title)
+        self.urlSlug = re.sub(r"\s+", '-', withoutSpaces).lower()
+
       super(Post, self).save(*args, **kwargs)
