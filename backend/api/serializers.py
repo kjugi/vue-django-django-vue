@@ -7,10 +7,14 @@ class ShortWriterSerializer(serializers.ModelSerializer):
     fields = ['id', 'name', 'email']
 
 class PostSerializer(serializers.ModelSerializer):
-    writer = ShortWriterSerializer()
+    writer = ShortWriterSerializer(read_only=True)
+    writer_id = serializers.PrimaryKeyRelatedField(
+      source='writer',
+      queryset=Writer.objects.all(),
+    )
     class Meta:
         model = Post
-        fields = ['id', 'title', 'urlSlug', 'content', 'categories', 'featureImage', 'writer']
+        fields = ['id', 'title', 'urlSlug', 'content', 'categories', 'featureImage', 'writer_id', 'writer']
 
 class WriterSerializer(serializers.ModelSerializer):
     class Meta:
