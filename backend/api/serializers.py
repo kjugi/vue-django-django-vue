@@ -12,6 +12,12 @@ class PostSerializer(serializers.ModelSerializer):
       source='writer',
       queryset=Writer.objects.all(),
     )
+
+    def validate(self, attrs):
+      instance = Post(**attrs)
+      instance.clean()
+      return attrs
+
     class Meta:
         model = Post
         fields = ['id', 'title', 'urlSlug', 'content', 'categories', 'featureImage', 'writer_id', 'writer']
