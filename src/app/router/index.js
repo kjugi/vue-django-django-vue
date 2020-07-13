@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/homepage/ui/Home.vue'
 import BlogPost from '@/blog/ui/_slug.vue'
 import Blog from '@/blog/ui/index.vue'
+import Writer from '@/writer/ui/_.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,10 @@ Vue.use(VueRouter)
     path: '/blog/:slug',
     name: 'post',
     component: BlogPost
+  },
+  {
+    path: '/writer/:id',
+    component: Writer
   }
 ]
 
