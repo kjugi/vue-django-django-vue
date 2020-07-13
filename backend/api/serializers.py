@@ -1,11 +1,6 @@
 from rest_framework import serializers
 from .models import Post, Writer
 
-class WriterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Writer
-        fields = '__all__'
-
 class ShortWriterSerializer(serializers.ModelSerializer):
   class Meta:
     model = Writer
@@ -16,6 +11,11 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id', 'title', 'urlSlug', 'content', 'categories', 'featureImage', 'writer']
+
+class WriterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Writer
+        fields = '__all__'
 
 class SinglePostSerializer(serializers.HyperlinkedModelSerializer):
     writer = WriterSerializer()
