@@ -1,9 +1,10 @@
 from django.views.decorators.cache import never_cache
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from rest_framework import viewsets
 
 from .models import Post, Writer
-from .serializers import WriterSerializer, PostSerializer, SinglePostSerializer
+from .serializers import WriterSerializer, PostSerializer, SinglePostSerializer, UserSerializer
 
 def indexWelcome(request):
   data = {
@@ -40,3 +41,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class WriterViewSet(viewsets.ModelViewSet):
   queryset = Writer.objects.all()
   serializer_class = WriterSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+  queryset = User.objects.all().order_by('id')
+  serializer_class = UserSerializer
