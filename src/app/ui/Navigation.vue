@@ -1,20 +1,6 @@
 <template>
   <div class="p-8 border-b-2 border-gray-700">
     <router-link
-      to="/"
-      class="link"
-    >
-      Home
-    </router-link>
-
-    <router-link
-      to="/about"
-      class="link"
-    >
-      About
-    </router-link>
-
-    <router-link
       to="/blog"
       class="link"
     >
