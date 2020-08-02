@@ -30,8 +30,11 @@ class PostViewSet(viewsets.ModelViewSet):
   def get_queryset(self):
     queryset = Post.objects.all().order_by('id')
     singlePost = self.request.query_params.get('urlSlug', None)
+    postByWriter = self.request.query_params.get('writer_id', None)
     if singlePost is not None:
       queryset = queryset.filter(urlSlug=singlePost)
+    elif postByWriter is not None:
+      queryset = queryset.filter(writer_id=postByWriter)
     return queryset
 
 class WriterViewSet(viewsets.ModelViewSet):
