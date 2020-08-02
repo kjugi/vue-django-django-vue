@@ -46,9 +46,22 @@
       </div>
     </div>
 
-    <div class="text-sm text-right uppercase">
+    <router-link
+      :to="`/writer/${data.writer_id}`"
+      class="
+        block
+        text-sm
+        text-right
+        uppercase
+        no-underline
+        text-green-600
+        transition-all
+        duration-300
+        hover:text-green-400
+      "
+    >
       Author: {{ data.writer.name }}
-    </div>
+    </router-link>
   </router-link>
 </template>
 
