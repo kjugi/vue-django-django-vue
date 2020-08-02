@@ -19,7 +19,7 @@
         <router-link
           v-if="pagination.prev"
           :to="`/blog/${pageNumber-1}`"
-          class="link relative uppercase border-2 p-2"
+          class="link relative uppercase border-2 p-2 mx-4"
         >
           Previous page
         </router-link>
@@ -27,7 +27,7 @@
         <router-link
           v-if="pagination.next"
           :to="`/blog/${pageNumber+1}`"
-          class="link relative uppercase border-2 p-2"
+          class="link relative uppercase border-2 p-2 mx-4"
         >
           Next page
         </router-link>
