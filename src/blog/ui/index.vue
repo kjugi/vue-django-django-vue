@@ -42,7 +42,7 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 
-import PostItem from './PostItem.vue'
+import PostItem from '@/app/ui/PostItem.vue'
 import Loader from '@/app/ui/Loader.vue'
 import ErrorComponent from '@/app/connector/Error.vue'
 
