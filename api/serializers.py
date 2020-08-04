@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Post, Writer
+from api.models import Post, Writer
 
 class UserSerializer(serializers.ModelSerializer):
   password = serializers.CharField(write_only=True)

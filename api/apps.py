@@ -4,4 +4,4 @@ class ApiConfig(AppConfig):
     name = 'api'
 
     def ready(self):
-        import backend.api.signals.handlers
+      import api.signals.handlers

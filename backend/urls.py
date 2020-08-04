@@ -20,7 +20,7 @@ from django.urls import path, include
 from rest_framework import routers
 import oauth2_provider.views as oauth2_views
 
-from .api.views import indexWelcome, PostViewSet, WriterViewSet, UserViewSet
+from api.views import indexWelcome, PostViewSet, WriterViewSet, UserViewSet
 
 router = routers.DefaultRouter()
 router.register('post', PostViewSet)

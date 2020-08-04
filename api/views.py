@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from rest_framework import viewsets
 
-from .models import Post, Writer
-from .serializers import WriterSerializer, PostSerializer, SinglePostSerializer, UserSerializer
+from api.models import Post, Writer
+from api.serializers import WriterSerializer, PostSerializer, SinglePostSerializer, UserSerializer
 
 def indexWelcome(request):
   data = {

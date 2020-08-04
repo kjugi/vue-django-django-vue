@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'jsonfield',
     'corsheaders',
-    'backend.api',
+    'api.apps.ApiConfig',
     'axes'
 ]
 
