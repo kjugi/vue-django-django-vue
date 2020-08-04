@@ -1,4 +1,5 @@
 from django.views.decorators.cache import never_cache
+from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from rest_framework import viewsets
@@ -12,6 +13,10 @@ def indexWelcome(request):
       'version': 0.1
   }
   return JsonResponse(data)
+
+class IsSuperUser(IsAdminUser):
+  def has_permission(self, request, view):
+    return bool(request.user and request.user.is_superuser)
 
 class PostViewSet(viewsets.ModelViewSet):
   """
@@ -44,4 +49,5 @@ class WriterViewSet(viewsets.ModelViewSet):
 
 class UserViewSet(viewsets.ModelViewSet):
   queryset = User.objects.all().order_by('id')
+  permission_classes = [IsSuperUser]
   serializer_class = UserSerializer
