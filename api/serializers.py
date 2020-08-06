@@ -1,19 +1,25 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from api.models import Post, Writer
-from django.contrib.auth.hashers import make_password
 
 class UserSerializer(serializers.ModelSerializer):
-  password = serializers.CharField(write_only=True)
   class Meta:
     model = User
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
+    write_only_fields = ['password',]
 
-  def save(self, *args, **kwargs):
-    user = super(UserSerializer, self).save(*args, **kwargs)
-    user.set_password(make_password(user.password))
+  def create(self, validated_data):
+    user = User.objects.create(
+      username=validated_data['username'],
+      email=validated_data['email'],
+      first_name=validated_data['first_name'],
+      last_name=validated_data['last_name']
+    )
+
     if self.is_valid():
-      user.save(update_fields=['password'])
+      user.set_password(validated_data['password'])
+      user.save()
+
     return user
 
 class ShortWriterSerializer(serializers.ModelSerializer):
