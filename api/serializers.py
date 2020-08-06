@@ -9,7 +9,12 @@ class UserSerializer(serializers.ModelSerializer):
     model = User
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
 
-  validate_password = make_password
+  def save(self, *args, **kwargs):
+    user = super(UserSerializer, self).save(*args, **kwargs)
+    user.set_password(make_password(user.password))
+    if self.is_valid():
+      user.save(update_fields=['password'])
+    return user
 
 class ShortWriterSerializer(serializers.ModelSerializer):
   class Meta:
