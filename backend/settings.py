@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'jsonfield',
     'corsheaders',
     'api.apps.ApiConfig',
-    # TODO: Check is it still needed
     'axes'
 ]
 
