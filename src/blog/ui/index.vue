@@ -1,10 +1,10 @@
 <template>
   <div>
+    <loader v-if="isFetching" />
+
     <h1 class="text-center text-3xl mb-4">
       Blog page
     </h1>
-
-    <loader v-if="isFetching" />
 
     <template v-if="!isFetchingError.status">
       <div class="flex flex-wrap mx-auto">
