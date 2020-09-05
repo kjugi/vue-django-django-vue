@@ -1,60 +1,67 @@
 <template>
-  <div v-if="data">
-    <h3 class="title relative text-2xl p-4 mb-16 border-2 border-black text-black">
-      {{ data.title }}
-    </h3>
+  <div>
+    <template v-if="data">
+      <h3 class="title relative text-2xl p-4 mb-16 border-2 border-black text-black">
+        {{ data.title }}
+      </h3>
 
-    <p class="text-justify max-w-screen-md mx-auto">
-      {{ data.content }}
-    </p>
-
-    <div
-      v-if="data.categories"
-      class="mt-16"
-    >
-      <div
-        v-for="(item, index) in data.categories"
-        :key="index"
-      >
-        {{ data.text }}
-      </div>
-    </div>
-
-    <div class="author relative border-gray-700 border-2 p-4 mt-16">
-      <h4 class="mb-4">
-        <span class="border-b-2 border-black font-bold">
-          Name:
-        </span>
-
-        {{ data.writer.name }}
-      </h4>
-
-      <p v-if="data.writer.bio">
-        <span class="border-b-2 border-black font-bold">
-          Bio:
-        </span>
-
-        {{ data.writer.bio }}
+      <p class="text-justify max-w-screen-md mx-auto">
+        {{ data.content }}
       </p>
-    </div>
+
+      <div
+        v-if="data.categories"
+        class="mt-16"
+      >
+        <div
+          v-for="(item, index) in data.categories"
+          :key="index"
+        >
+          {{ data.text }}
+        </div>
+      </div>
+
+      <div class="author relative border-gray-700 border-2 p-4 mt-16">
+        <h4 class="mb-4">
+          <span class="border-b-2 border-black font-bold">
+            Name:
+          </span>
+
+          {{ data.writer.name }}
+        </h4>
+
+        <p v-if="data.writer.bio">
+          <span class="border-b-2 border-black font-bold">
+            Bio:
+          </span>
+
+          {{ data.writer.bio }}
+        </p>
+      </div>
+    </template>
+    <loader v-else-if="isFetching" />
+
+    <error-component v-else-if="!data && !isFetching">
+      Problem with fetching data from api
+    </error-component>
   </div>
-  <error-component v-else>
-    Problem with fetching data from api
-  </error-component>
 </template>
 
 <script>
 import axios from 'axios'
 
 import ErrorComponent from '@/app/connector/Error.vue'
+import Loader from '@/app/ui/Loader.vue'
 
 export default {
   components: {
-    ErrorComponent
+    ErrorComponent,
+    Loader
   },
   data () {
     return {
-      data: null
+      data: null,
+      isFetching: true
     }
   },
   async mounted() {
@@ -66,6 +73,8 @@ export default {
       this.data = data
     } catch (error) {
       this.data = false
+    } finally {
+      this.isFetching = false
     }
   }
 }
