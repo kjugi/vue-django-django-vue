@@ -21,7 +21,7 @@ Vue.use(VueRouter)
     component: Blog
   },
   {
-    path: '/blog/:slug',
+    path: '/post/:slug',
     name: 'post',
     component: BlogPost
   },
