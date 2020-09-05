@@ -7,14 +7,14 @@
       :data="writerData"
     />
 
-    <template v-if="postData && postData.count > 0">
+    <template v-if="postCount > 0">
       <h2 class="text-center text-2xl mb-4">
         Writer posts
       </h2>
 
       <div class="flex flex-wrap mx-auto">
         <post-item
-          v-for="(item, index) in postData.results"
+          v-for="(item, index) in posts"
           :key="index"
           :data="item"
         />
@@ -22,7 +22,7 @@
 
       <div class="flex justify-center my-8">
         <button
-          v-if="postData.previous"
+          v-if="pagination.prev"
           class="link relative uppercase border-2 p-2 mx-4"
           @click="fetchPostPage(pageNumber - 1)"
         >
@@ -30,7 +30,7 @@
         </button>
 
         <button
-          v-if="postData.next"
+          v-if="pagination.next"
           class="link relative uppercase border-2 p-2 mx-4"
           @click="fetchPostPage(pageNumber + 1)"
         >
@@ -38,17 +38,21 @@
         </button>
       </div>
     </template>
-    <p v-else-if="postData && postData.count === 0">
+    <p
+      v-else-if="posts && postCount === 0"
+      class="text-center text-2xl mb-4"
+    >
       Writer don't have any posts yet.
     </p>
 
-    <error-component v-if="(!writerData || !postData) && !isFetching">
+    <error-component v-if="(!writerData || !posts) && !isFetching">
       Problem with fetching data from api
     </error-component>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import axios from 'axios'
 
 import FullWriterInfo from './FullWriterInfo.vue'
@@ -66,10 +70,16 @@ export default {
   data () {
     return {
       writerData: null,
-      postData: null,
       pageNumber: 1,
       isFetching: true
     }
+  },
+  computed: {
+    ...mapState('main', [
+      'posts',
+      'postCount',
+      'pagination'
+    ])
   },
   async mounted() {
     try {
@@ -86,24 +96,27 @@ export default {
       this.isFetching = false
     }
   },
+  watch: {
+    $route() {
+      this.fetchPostPage(1)
+    }
+  },
   methods: {
+    ...mapActions('main', [
+      'fetchBlogEndpoint'
+    ]),
     async fetchPostPage(pageNumber) {
-      try {
-        if (!this.isFetching) {
-          this.isFetching = true
-        }
-
-        const postData = await axios(
-          `http://127.0.0.1:8000/api/post/?ormat=json&writer_id=${this.$route.params.id}&page=${pageNumber}`
-        )
-
-        this.pageNumber = pageNumber
-        this.postData = postData.data
-      } catch (error) {
-        this.postData = false
-      } finally {
-        this.isFetching = false
+      if (!this.isFetching) {
+        this.isFetching = true
       }
+
+      await this.fetchBlogEndpoint({
+        page: pageNumber,
+        'writer_id': this.$route.params.id
+      })
+
+      this.pageNumber = pageNumber
+      this.isFetching = false
     }
   }
 }

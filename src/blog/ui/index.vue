@@ -6,7 +6,7 @@
       Blog page
     </h1>
 
-    <template v-if="!isFetchingError.status">
+    <template v-if="postCount > 0">
       <div class="flex flex-wrap mx-auto">
         <post-item
           v-for="(item, index) in posts"
@@ -33,8 +33,14 @@
         </router-link>
       </div>
     </template>
+    <p
+      v-else-if="posts && postCount === 0"
+      class="text-center text-2xl mb-4"
+    >
+      Writer don't have any posts yet.
+    </p>
     <error-component v-else>
-      Problem with fetching data from api: {{ isFetchingError.message }}
+      Problem with fetching data from api: {{ isFetchingError }}
     </error-component>
   </div>
 </template>
@@ -58,15 +64,13 @@ export default {
   data () {
     return {
       isFetching: false,
-      isFetchingError: {
-        status: false,
-        message: null
-      }
+      isFetchingError: null
     }
   },
   computed: {
-    ...mapState('blog', [
+    ...mapState('main', [
       'posts',
+      'postCount',
       'pagination'
     ]),
     pageNumber () {
@@ -87,20 +91,19 @@ export default {
     }
   },
   methods: {
-    ...mapActions('blog', [
-      'fetchPosts'
+    ...mapActions('main', [
+      'fetchBlogEndpoint'
     ]),
     async handleFetching () {
       try {
         this.isFetching = true
 
         // Get post for page
-        await this.fetchPosts(this.$route.params.id || 1)
+        await this.fetchBlogEndpoint({
+          page: this.$route.params.id || 1
+        })
       } catch (error) {
-        this.isFetchingError = {
-          status: true,
-          message: error.message
-        }
+        this.isFetchingError = error.message
       } finally {
         this.isFetching = false
       }
