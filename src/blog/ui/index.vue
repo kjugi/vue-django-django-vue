@@ -18,7 +18,7 @@
       <div class="flex justify-center my-8">
         <router-link
           v-if="pagination.prev"
-          :to="`/post/${pageNumber-1}`"
+          :to="`/blog/${pageNumber-1}`"
           class="link relative uppercase border-2 p-2 mx-4"
         >
           Previous page
@@ -26,7 +26,7 @@
 
         <router-link
           v-if="pagination.next"
-          :to="`/post/${pageNumber+1}`"
+          :to="`/blog/${pageNumber+1}`"
           class="link relative uppercase border-2 p-2 mx-4"
         >
           Next page
